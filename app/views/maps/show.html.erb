@@ -1,0 +1,23 @@
+<div id="map"></div>
+<script>
+$.getJSON("http://localhost:3000/api/pizza_joints").done(function(data){
+
+    myfunction(data.pizza_joints);
+
+  });
+
+  function myfunction( items ) {
+
+    for (index = 0; index < items.length; index++ )
+    {
+      //document.getElementById("images").innerHTML = items[index].lat;
+      L.marker([ items[index].lat, items[index].long])
+     .addTo(window.map)
+     .bindPopup("<b>" + items[index].name + "</b>");
+    }
+  }
+
+
+</script>
+
+<p><center><b> Bharvi's Pizzeria</center></b></p>
