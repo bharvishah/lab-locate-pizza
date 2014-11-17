@@ -1,19 +1,22 @@
 <div id="map"></div>
 <script>
-$.getJSON("http://bharvi-pizzeria.herokuapp.com/api/pizza_joints").done(function(data){
+$.getJSON("/api/pizza_joints").done(function(data){
+
   var pizzaPlaces = data.pizza_joints
+
+  var pizzaIcon = L.icon({
+    iconUrl: 'http://apps.timwhitlock.info/static/images/emoji/emoji-apple/1f355.png',
+    iconSize:    [38, 95], // size of the icon
+    iconAnchor:  [22, 94], // point of the icon which will correspond to marker's location
+});
+
   for (var i =0;i < pizzaPlaces.length; i++)
   {
 
-    L.marker([ pizzaPlaces[i].lat, pizzaPlaces[i].long])
+    L.marker([ pizzaPlaces[i].lat, pizzaPlaces[i].long], {icon: pizzaIcon})
    .addTo(window.map)
    .bindPopup("<b>" + pizzaPlaces[i].name + "</b>");
 
   }
 
 });
-
-
-</script>
-
-<p><center><b> Bharvi's Pizzeria</center></b></p>
